@@ -19,15 +19,13 @@ task("3.set", "Add one member for struct")
     );
 
     // 调用set函数
-    await IMapping.set(address, value);
+    const set = await IMapping.set(address, value);
+    await set.wait();
     console.log(
       "Add one member with address %s, value %d successfully",
       address,
       value
     );
-
-    // 等候3秒钟
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // 得到struct的成员数量
     const size = (await IMapping.size()).toString();

@@ -14,11 +14,9 @@ task("2.init", "Initialize struct").setAction(async (_, hre) => {
   );
 
   // 调用initializeStruct函数
-  await IMapping.initializeStruct();
+  const struct = await IMapping.initializeStruct();
+  await struct.wait();
   console.log("initializeStruct called successfully");
-
-  // 等候3秒钟
-  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   // 得到现在的struct的成员数量
   const size = (await IMapping.size()).toString();

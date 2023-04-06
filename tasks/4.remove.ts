@@ -16,11 +16,9 @@ task("4.remove", "Remove one member for struct")
     );
 
     // 调用remove函数
-    await IMapping.remove(address);
+    const remove = await IMapping.remove(address);
+    await remove.wait();
     console.log("Removed one member with address %s successfully", address);
-
-    // 等候3秒钟
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // 得到struct的成员数量
     const size = (await IMapping.size()).toString();
